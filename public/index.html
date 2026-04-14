@@ -1056,6 +1056,8 @@
                 const apiKey = document.getElementById('apiKey').value;
                 const model = document.getElementById('modelSelect').value;
 
+                console.log('Sending request:', { apiKeyPrefix: apiKey ? apiKey.substring(0, 10) : null, model });
+
                 if (!apiKey) {
                     throw new Error('API key required. Click ⚙️ Settings to configure your OpenCode Go key.');
                 }
@@ -1064,7 +1066,7 @@
                 const isMiniMax = model.includes('minimax');
 
                 // Send through our proxy server
-                const response = await fetch('http://localhost:8080/proxy', {
+                const response = await fetch('/proxy', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

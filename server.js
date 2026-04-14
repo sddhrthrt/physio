@@ -32,21 +32,27 @@ const server = http.createServer((req, res) => {
       try {
         const { apiKey, model, messages, system } = JSON.parse(body);
         
+        console.log('Proxy received request:', { model, hasApiKey: !!apiKey, apiKeyPrefix: apiKey ? apiKey.substring(0, 10) : null });
+        
         if (!apiKey) {
           res.writeHead(400, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: 'API key required' }));
           return;
         }
 
-        const isMiniMax = model && model.includes('minimax');
-        const targetPath = isMiniMax ? '/zen/go/v1/messages' : '/zen/go/v1/chat/completions';
+        // All models use /zen/go/v1/chat/completions with OpenAI format
+        const targetPath = '/zen/go/v1/chat/completions';
         
-        let requestBody;
-        if (isMiniMax) {
-          requestBody = JSON.stringify({ model, system, messages });
-        } else {
-          requestBody = JSON.stringify({ model, messages });
+        // Build messages array with system message
+        const allMessages = [];
+        if (system) {
+          allMessages.push({ role: 'system', content: system });
         }
+        if (messages) {
+          allMessages.push(...messages);
+        }
+        
+        const requestBody = JSON.stringify({ model, messages: allMessages });
 
         const options = {
           hostname: 'opencode.ai',
@@ -60,18 +66,33 @@ const server = http.createServer((req, res) => {
           }
         };
 
+        console.log('Making request to OpenCode:', { 
+          url: 'https://opencode.ai' + targetPath, 
+          model,
+          authPrefix: apiKey ? apiKey.substring(0, 15) : null
+        });
+
         const proxyReq = https.request(options, (proxyRes) => {
           let data = '';
           proxyRes.on('data', chunk => data += chunk);
           proxyRes.on('end', () => {
+            console.log('OpenCode response:', proxyRes.statusCode, data.substring(0, 200));
             res.writeHead(proxyRes.statusCode, { 'Content-Type': 'application/json' });
             res.end(data);
           });
         });
 
         proxyReq.on('error', (err) => {
+          console.log('OpenCode request error:', err.message);
           res.writeHead(500, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: err.message }));
+        });
+
+        proxyReq.on('timeout', () => {
+          console.log('OpenCode request timeout');
+          proxyReq.destroy();
+          res.writeHead(504, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Request timeout' }));
         });
 
         proxyReq.write(requestBody);
