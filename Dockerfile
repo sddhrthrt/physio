@@ -1,6 +1,6 @@
-FROM nginx:alpine
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY *.html /usr/share/nginx/html/
-COPY *.json /usr/share/nginx/html/
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:alpine
+WORKDIR /app
+COPY server.js .
+COPY public ./public
+EXPOSE 3000
+CMD ["node", "server.js"]
