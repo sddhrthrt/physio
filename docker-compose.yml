@@ -1,5 +1,7 @@
 services:
-  app:
-    build: .
+  physio-app:
+    image: physio-app:latest
+    container_name: physio-app
     ports:
       - "3000:3000"
+    restart: unless-stopped
