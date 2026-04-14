@@ -191,6 +191,23 @@
             object-fit: contain;
         }
 
+        .exercise-icon-container {
+            flex-shrink: 0;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .exercise-icon {
+            font-size: 2.5rem;
+            opacity: 0.6;
+        }
+
+        .sets-container.full-width {
+            flex: 1;
+        }
+
         .sets-container {
             flex: 1;
             display: flex;
@@ -516,7 +533,8 @@
                 const completedCount = exerciseState.completedSets ? exerciseState.completedSets.filter(Boolean).length : 0;
                 const isExerciseComplete = completedCount >= parsed.sets;
                 const equipmentTag = ex.equipment ? '<span class="equipment-tag">' + ex.equipment + '</span>' : '';
-                const imgUrl = getImageUrl(ex.img);
+                const imgUrl = ex.img ? getImageUrl(ex.img) : '';
+                const hasImage = routine === 'gym' && imgUrl;
                 
                 let setsHtml = '';
                 if (parsed.sets === 1 && parsed.reps === 'continuous') {
@@ -529,6 +547,10 @@
                     }
                 }
 
+                const imageHtml = hasImage 
+                    ? '<div class="exercise-diagram"><img src="' + imgUrl + '" alt="' + ex.name + '" loading="lazy"></div>'
+                    : '<div class="exercise-icon">🧘</div>';
+
                 return '<div class="exercise-card ' + (isExerciseComplete ? 'completed' : '') + '" data-exercise="' + ex.id + '">' +
                     '<div class="exercise-header">' +
                     '<div class="exercise-info">' +
@@ -537,10 +559,8 @@
                     '</div>' +
                     '</div>' +
                     '<div class="exercise-content">' +
-                    '<div class="exercise-diagram">' +
-                    (imgUrl ? '<img src="' + imgUrl + '" alt="' + ex.name + '" loading="lazy">' : '') +
-                    '</div>' +
-                    '<div class="sets-container">' +
+                    (hasImage ? imageHtml : '<div class="exercise-icon-container">' + imageHtml + '</div>') +
+                    '<div class="sets-container' + (hasImage ? '' : ' full-width') + '">' +
                     '<div class="sets-grid">' + setsHtml + '</div>' +
                     '<div class="exercise-cue">' + ex.cue + '</div>' +
                     '</div>' +
