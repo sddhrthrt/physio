@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACL Recovery Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #4ade80;
+            --border: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .phase-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .day-info {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-secondary);
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 14px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .tab.active {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+
+        .tab:hover:not(.active) {
+            background: var(--bg-card);
+        }
+
+        .routine-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .exercise-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .exercise-card.completed {
+            opacity: 0.6;
+            border-color: var(--accent);
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .exercise-info {
+            flex: 1;
+        }
+
+        .exercise-name {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .exercise-reps {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .equipment-tag {
+            display: inline-block;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .exercise-content {
+            display: flex;
+            gap: 12px;
+        }
+
+        .exercise-diagram {
+            flex-shrink: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .exercise-diagram img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .sets-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sets-grid {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .set-btn {
+            width: 44px;
+            height: 44px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .set-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .set-btn.completed {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+        }
+
+        .set-btn:active {
+            transform: scale(0.95);
+        }
+
+        .exercise-cue {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .completion-celebration {
+            display: none;
+            background: linear-gradient(135deg, var(--accent) 0%, #22c55e 100%);
+            color: #000;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: celebratePulse 0.5s ease-out;
+        }
+
+        .completion-celebration.show {
+            display: block;
+        }
+
+        @keyframes celebratePulse {
+            0% { transform: scale(0.9); opacity: 0; }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .phase-info {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .phase-info h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .phase-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .completed-count {
+            text-align: center;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .completed-count span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .overall-progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .overall-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .overall-dot.completed {
+            background: var(--accent);
+        }
+
+        .reset-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .reset-btn:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .exercise-card {
+                padding: 12px;
+            }
+
+            .exercise-diagram {
+                width: 80px;
+                height: 80px;
+            }
+
+            .set-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧘 ACL Recovery</h1>
+            <div class="phase-badge" id="phaseBadge">Phase 2</div>
+            <div class="day-info" id="dayInfo">Day 7 of Phase 2</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 50%"></div>
+            </div>
+        </header>
+
+        <div class="completed-count">
+            <span id="completedCount">0</span> / <span id="totalCount">0</span> sets completed
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-routine="home">🏠 Home Routine</button>
+            <button class="tab" data-routine="gym">🏋️ Gym Routine</button>
+        </div>
+
+        <div id="homeRoutine">
+            <div class="routine-title">3× Daily • Yoga Mat + Bands</div>
+            <div id="homeExercises"></div>
+        </div>
+
+        <div id="gymRoutine" class="hidden">
+            <div class="routine-title">Morning • Equipment Available</div>
+            <div id="gymExercises"></div>
+        </div>
+
+        <div class="completion-celebration" id="celebration">
+            <h3>🎉 All Done!</h3>
+            <p>Great work today. Your knee is getting stronger.</p>
+        </div>
+
+        <div class="phase-info">
+            <h3>📋 Phase 2 Focus (Weeks 2-4)</h3>
+            <p>Early strengthening, continued ROM restoration. Focus on control and proper form. Pain should be minimal during exercises—if something hurts, stop and check with your PT.</p>
+        </div>
+
+        <button class="reset-btn" onclick="resetDay()">🔄 Reset Today's Progress</button>
+    </div>
+
+    <script>
+        // Image URLs from free-exercise-db (public domain)
+        const IMG = {
+            legExtensions: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg',
+            flatBenchLyingLegRaise: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Lying_Leg_Raise/0.jpg',
+            buttLiftBridge: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg',
+            lyingGlute: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Glute/0.jpg',
+            ballLegCurl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ball_Leg_Curl/0.jpg',
+            singleLegGluteBridge: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single_Leg_Glute_Bridge/0.jpg',
+            bodyweightSquat: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg',
+            dumbbellStepUps: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Step_Ups/0.jpg',
+            balanceBoard: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Balance_Board/0.jpg',
+            standingCalfRaises: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg',
+            romanianDeadlift: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg',
+            splitSquats: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squats/0.jpg',
+            lateralConeHops: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lateral_Cone_Hops/0.jpg',
+            boxJumpMultipleResponse: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Box_Jump_Multiple_Response/0.jpg',
+            singleLegHopProgression: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single-Leg_Hop_Progression/0.jpg',
+            cariacoQuickStep: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Carioca_Quick_Step/0.jpg',
+            bicyclingStationary: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bicycling_Stationary/0.jpg',
+            legPress: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg',
+            seatedLegCurl: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Leg_Curl/0.jpg',
+            gobletSquat: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/0.jpg',
+            seatedCalfRaise: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/0.jpg',
+            barbellSquat: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Squat/0.jpg',
+            barbellWalkingLunge: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Walking_Lunge/0.jpg',
+            gluteHamRaise: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Ham_Raise/0.jpg',
+            singleLegLegExtension: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single-Leg_Leg_Extension/0.jpg',
+            barbellDeadlift: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/0.jpg',
+            lyingLegCurls: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg',
+            barbellSideSplitSquat: 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Side_Split_Squat/0.jpg'
+        };
+
+        // Start date: April 7, 2026 (1 week ago)
+        const START_DATE = new Date('2026-04-07');
+        const PHASES = {
+            1: { name: 'Phase 1', weeks: '0-2', duration: 14, focus: 'Pain/inflammation control, quad activation, basic ROM' },
+            2: { name: 'Phase 2', weeks: '2-4', duration: 14, focus: 'Early strengthening, continued ROM restoration' },
+            3: { name: 'Phase 3', weeks: '4-8', duration: 28, focus: 'Progressive strengthening, closed-chain exercises' },
+            4: { name: 'Phase 4', weeks: '8-12', duration: 28, focus: 'Advanced strengthening, single-leg work' },
+            5: { name: 'Phase 5', weeks: '12+', duration: 84, focus: 'Functional training, return to activity' }
+        };
+
+        // Parse sets/reps from string like "3×30 reps" or "15-20 min"
+        function parseSets(setsStr) {
+            if (setsStr.includes('min')) {
+                return { sets: 1, reps: 'continuous' };
+            }
+            const match = setsStr.match(/(\d+)[×x](\d+)/);
+            if (match) {
+                return { sets: parseInt(match[1]), reps: parseInt(match[2]) };
+            }
+            const singleMatch = setsStr.match(/(\d+)\s*(reps?|sec)/i);
+            if (singleMatch) {
+                return { sets: 1, reps: parseInt(singleMatch[1]) };
+            }
+            return { sets: 1, reps: 0 };
+        }
+
+        const HOME_EXERCISES = {
+            1: [
+                { id: 'quad-sets', name: 'Quad Sets', sets: '3×30 reps', cue: 'Squeeze quad muscle, press knee down into mat. Hold 2 seconds.', img: IMG.legExtensions },
+                { id: 'heel-props', name: 'Heel Props', sets: '5 min hold', cue: 'Heel on towel roll, ankle weight on knee. Relax and let knee straighten.', img: IMG.legExtensions },
+                { id: 'heel-slides', name: 'Heel Slides', sets: '3×15 reps', cue: 'Slide heel toward buttock, return slowly. Use strap if needed.', img: IMG.flatBenchLyingLegRaise },
+                { id: 'slr', name: 'Straight Leg Raises', sets: '3×15 reps', cue: 'Tighten quad, lift leg to height of opposite knee. Lower slowly.', img: IMG.flatBenchLyingLegRaise },
+                { id: 'glute-bridges', name: 'Glute Bridges', sets: '3×15 reps', cue: 'Squeeze glutes, lift hips. Keep core engaged.', img: IMG.buttLiftBridge },
+                { id: 'clamshells', name: 'Clamshells', sets: '3×15 reps', cue: 'Band above knees. Keep feet together, open knees like a clam.', img: IMG.lyingGlute },
+                { id: 'hamstring-curl-band', name: 'Hamstring Curls', sets: '3×15 reps', cue: 'Lie face down, band around ankle. Curl heel toward buttock.', img: IMG.ballLegCurl }
+            ],
+            2: [
+                { id: 'quad-sets', name: 'Quad Sets', sets: '3×30 reps', cue: 'Squeeze quad, press knee down. Hold 2 seconds per rep.', img: IMG.legExtensions },
+                { id: 'heel-slides', name: 'Heel Slides', sets: '3×15 reps', cue: 'Slide heel toward buttock, hold 3 sec, return slowly.', img: IMG.flatBenchLyingLegRaise },
+                { id: 'slr', name: 'Straight Leg Raises', sets: '3×15 reps', cue: 'Lift with quad only—no swinging. Control the descent.', img: IMG.flatBenchLyingLegRaise },
+                { id: 'short-arc-quad', name: 'Short Arc Quads', sets: '3×15 reps', cue: 'Foam roll under knee, straighten leg. Hold at top.', img: IMG.legExtensions },
+                { id: 'glute-bridges', name: 'Glute Bridges', sets: '3×15 reps', cue: 'Drive through heels, squeeze glutes at top.', img: IMG.buttLiftBridge },
+                { id: 'clamshells', name: 'Clamshells', sets: '3×15 reps', cue: 'Rotate hip open, keep core braced. No rolling back.', img: IMG.lyingGlute },
+                { id: 'single-leg-bridge', name: 'Single Leg Bridges', sets: '3×10 reps', cue: 'Extend one leg, lift on injured side. More challenging.', img: IMG.singleLegGluteBridge },
+                { id: 'terminal-knee-ext', name: 'Terminal Knee Extensions', sets: '3×15 reps', cue: 'Band behind knee, pull forward to straighten.', img: IMG.legExtensions }
+            ],
+            3: [
+                { id: 'single-leg-bridge', name: 'Single Leg Bridges', sets: '3×15 reps', cue: 'Extend one leg, lift on injured side. 3 sec hold at top.', img: IMG.singleLegGluteBridge },
+                { id: 'clamshells', name: 'Clamshells', sets: '3×20 reps', cue: 'Higher reps for endurance. Keep hips level.', img: IMG.lyingGlute },
+                { id: 'standing-abduction', name: 'Standing Hip Abduction', sets: '3×15 reps', cue: 'Band around ankles, lift leg out to side. Control return.', img: IMG.lyingGlute },
+                { id: 'mini-squats', name: 'Mini Squats', sets: '3×15 reps', cue: 'Hold counter for balance. Only go as low as comfortable.', img: IMG.bodyweightSquat },
+                { id: 'step-ups', name: 'Step Ups', sets: '3×10 reps', cue: 'Step up with injured leg. Control the descent.', img: IMG.dumbbellStepUps },
+                { id: 'single-leg-stance', name: 'Single Leg Stance', sets: '3×30 sec', cue: 'Stand on injured leg. Progress to eyes closed.', img: IMG.balanceBoard },
+                { id: 'sliders', name: 'Hamstring Slider', sets: '3×12 reps', cue: 'Lie on back, slide heel in and out. Squeeze glutes.', img: IMG.ballLegCurl },
+                { id: 'calf-raises', name: 'Standing Calf Raises', sets: '3×15 reps', cue: 'Rise onto toes, lower slowly. Hold wall for balance.', img: IMG.standingCalfRaises }
+            ],
+            4: [
+                { id: 'single-leg-rdl', name: 'Single Leg RDL', sets: '3×10 reps', cue: 'Hinge at hip, extend free leg back. Use wall for balance.', img: IMG.romanianDeadlift },
+                { id: 'split-squats', name: 'Split Squats', sets: '3×10 reps', cue: 'Step back into lunge, lower until back knee taps floor.', img: IMG.splitSquats },
+                { id: 'lateral-step-downs', name: 'Lateral Step Downs', sets: '3×10 reps', cue: 'Stand on step, lower heel to floor. Don\'t collapse knee.', img: IMG.dumbbellStepUps },
+                { id: 'band-walks', name: 'Band Walks', sets: '3×12 reps', cue: 'Squat slightly, walk sideways into band. Keep tension.', img: IMG.lyingGlute },
+                { id: 'single-leg-bridge', name: 'Single Leg Bridge', sets: '3×15 reps', cue: 'Hold 3 sec at top. Progress by adding weight.', img: IMG.singleLegGluteBridge },
+                { id: 'calf-raises', name: 'Single Leg Calf Raises', sets: '3×12 reps', cue: 'Rise on injured leg only. Full range of motion.', img: IMG.standingCalfRaises },
+                { id: 'single-leg-stance', name: 'Single Leg Stance', sets: '3×45 sec', cue: 'Stand on cushion or pillow. Add head turns.', img: IMG.balanceBoard },
+                { id: 'cossack-squats', name: 'Cossack Squats', sets: '3×8 reps', cue: 'Wide stance, shift weight side to side. Hold counter.', img: IMG.barbellSideSplitSquat }
+            ],
+            5: [
+                { id: 'single-leg-squat', name: 'Single Leg Squat', sets: '3×10 reps', cue: 'Lower to box/chair. Control descent. No bouncing.', img: IMG.splitSquats },
+                { id: 'single-leg-rdl', name: 'Single Leg RDL', sets: '3×12 reps', cue: 'Hinge with weight in opposite hand. Back straight.', img: IMG.romanianDeadlift },
+                { id: 'jumping', name: 'Double Leg Jumps', sets: '3×10 reps', cue: 'Jump off floor, land soft. Both feet together.', img: IMG.boxJumpMultipleResponse },
+                { id: 'lateral-hop', name: 'Lateral Hops', sets: '3×8 reps', cue: 'Hop side to side over line. Land controlled.', img: IMG.lateralConeHops },
+                { id: 'pogo', name: 'Pogo Jumps', sets: '3×15 reps', cue: 'Quick hops, stay on balls of feet. Minimal ground time.', img: IMG.boxJumpMultipleResponse },
+                { id: 'single-leg-hop', name: 'Single Leg Hops', sets: '3×5 reps', cue: 'Hop forward. Focus on landing quality, not distance.', img: IMG.singleLegHopProgression },
+                { id: 'carioca', name: 'Carioca/Grapevine', sets: '3×30 sec', cue: 'Lateral crossing steps. Maintain balance.', img: IMG.cariacoQuickStep },
+                { id: 'box-jumps', name: 'Box Jumps', sets: '3×8 reps', cue: 'Jump onto box. Step down. Control the landing.', img: IMG.boxJumpMultipleResponse }
+            ]
+        };
+
+        const GYM_EXERCISES = {
+            1: [
+                { id: 'bike', name: 'Stationary Bike', sets: '15-20 min', cue: 'Low resistance, focus on full pedal circle. Warm up.', equipment: 'Bikes', img: IMG.bicyclingStationary },
+                { id: 'leg-press', name: 'Leg Press', sets: '3×15 reps', cue: 'Only go to 45° knee bend. Focus on quad control.', equipment: 'Machine', img: IMG.legPress },
+                { id: 'seated-hamcurl', name: 'Seated Hamstring Curls', sets: '3×15 reps', cue: 'Control the eccentric. No jerky movements.', equipment: 'Ham Curl', img: IMG.seatedLegCurl },
+                { id: 'cable-tke', name: 'Cable Terminal Knee Ext', sets: '3×15 reps', cue: '90° to 45° range. Squeeze quad at full extension.', equipment: 'Cable', img: IMG.legExtensions },
+                { id: 'ball-curl', name: 'Exercise Ball Curls', sets: '3×12 reps', cue: 'Bridge up, roll ball with heels. Control the return.', equipment: 'Ball', img: IMG.ballLegCurl },
+                { id: 'leg-extension', name: 'Leg Extensions', sets: '3×15 reps', cue: '90° to full extension. No pad pressure on shin.', equipment: 'Machine', img: IMG.legExtensions }
+            ],
+            2: [
+                { id: 'bike', name: 'Stationary Bike', sets: '15-20 min', cue: 'Increase resistance slightly. Full circles.', equipment: 'Bikes', img: IMG.bicyclingStationary },
+                { id: 'leg-press', name: 'Leg Press', sets: '3×15 reps', cue: 'Deeper range now. Both legs, then single leg variations.', equipment: 'Machine', img: IMG.legPress },
+                { id: 'seated-hamcurl', name: 'Seated Hamstring Curls', sets: '3×15 reps', cue: 'Both legs, then single. Full range.', equipment: 'Ham Curl', img: IMG.seatedLegCurl },
+                { id: 'goblet-squat', name: 'Goblet Squats', sets: '3×12 reps', cue: 'Hold weight at chest. Keep chest up, knees out.', equipment: 'Rack', img: IMG.gobletSquat },
+                { id: 'step-ups', name: 'Step Ups', sets: '3×12 reps', cue: 'Use low step. Drive through heel, not toes.', equipment: 'Floor', img: IMG.dumbbellStepUps },
+                { id: 'prone-tke', name: 'Prone Terminal Knee Ext', sets: '3×15 reps', cue: 'Cable behind knee, lie prone. Extend fully.', equipment: 'Cable', img: IMG.legExtensions },
+                { id: 'calf-raise-machine', name: 'Seated Calf Raises', sets: '3×15 reps', cue: 'Full stretch at bottom, rise fully on toes.', equipment: 'Machine', img: IMG.seatedCalfRaise }
+            ],
+            3: [
+                { id: 'bike', name: 'Stationary Bike', sets: '20-30 min', cue: 'Moderate resistance. Warm up first.', equipment: 'Bikes', img: IMG.bicyclingStationary },
+                { id: 'leg-press-single', name: 'Single Leg Press', sets: '3×12 reps', cue: 'Focus on the injured leg. Full range.', equipment: 'Machine', img: IMG.legPress },
+                { id: 'goblet-squat', name: 'Goblet Squats', sets: '3×15 reps', cue: 'Deeper squat, heavier weight. Chest up.', equipment: 'Rack', img: IMG.gobletSquat },
+                { id: 'bulgarian-split', name: 'Bulgarian Split Squats', sets: '3×10 reps', cue: 'Back foot elevated on bench. Hold rack for balance.', equipment: 'Rack/Bench', img: IMG.splitSquats },
+                { id: 'rdl', name: 'Romanian Deadlifts', sets: '3×12 reps', cue: 'Hinge at hips, keep bar close. Feel hamstrings.', equipment: 'Rack', img: IMG.romanianDeadlift },
+                { id: 'standing-hamcurl', name: 'Standing Hamstring Curls', sets: '3×12 reps', cue: 'Single leg. Control the negative.', equipment: 'Ham Curl', img: IMG.lyingLegCurls },
+                { id: 'leg-extension', name: 'Leg Extensions', sets: '3×15 reps', cue: 'Slow and controlled. Full squeeze at top.', equipment: 'Machine', img: IMG.legExtensions },
+                { id: 'hip-sled', name: 'Hip Sled', sets: '3×15 reps', cue: 'Focus on quad control through full range.', equipment: 'Machine', img: IMG.legPress }
+            ],
+            4: [
+                { id: 'bike', name: 'Bike or Elliptical', sets: '25-30 min', cue: 'Higher intensity intervals if tolerated.', equipment: 'Bikes', img: IMG.bicyclingStationary },
+                { id: 'back-squat', name: 'Back Squats', sets: '3×12 reps', cue: 'Focus on form. Box squats for control.', equipment: 'Rack', img: IMG.barbellSquat },
+                { id: 'bulgarian-split', name: 'Bulgarian Split Squats', sets: '3×12 reps', cue: 'No hands. Full depth if possible.', equipment: 'Rack/Bench', img: IMG.splitSquats },
+                { id: 'rdl-single', name: 'Single Leg RDL', sets: '3×10 reps', cue: 'Dumbbell in opposite hand. Hip hinge.', equipment: 'Rack', img: IMG.romanianDeadlift },
+                { id: 'leg-press-heavy', name: 'Leg Press', sets: '3×10 reps', cue: 'Progressive overload. Full range.', equipment: 'Machine', img: IMG.legPress },
+                { id: 'walking-lunges', name: 'Walking Lunges', sets: '3×12 reps', cue: 'Long stride, controlled. Hold dumbbells.', equipment: 'Rack', img: IMG.barbellWalkingLunge },
+                { id: 'nordic-curl-neg', name: 'Nordic Curl Negatives', sets: '3×8 reps', cue: 'Slow eccentric only. Catch with hands.', equipment: 'Floor', img: IMG.gluteHamRaise },
+                { id: 'single-leg-extension', name: 'Single Leg Extensions', sets: '3×12 reps', cue: 'Full control. No swinging.', equipment: 'Machine', img: IMG.singleLegLegExtension }
+            ],
+            5: [
+                { id: 'bike', name: 'Bike / Rowing', sets: '30-40 min', cue: 'Include intervals. Build conditioning.', equipment: 'Bikes', img: IMG.bicyclingStationary },
+                { id: 'back-squat', name: 'Back Squats', sets: '4×8 reps', cue: 'Working sets. Focus on depth and form.', equipment: 'Rack', img: IMG.barbellSquat },
+                { id: 'deadlift', name: 'Deadlifts', sets: '4×6 reps', cue: 'Conventional or sumo. Keep back neutral.', equipment: 'Rack', img: IMG.barbellDeadlift },
+                { id: 'single-leg-squat', name: 'Bulgarian Split Squats', sets: '3×10 reps', cue: 'Unilateral strength. No hands.', equipment: 'Rack/Bench', img: IMG.splitSquats },
+                { id: 'jump-squats', name: 'Jump Squats', sets: '3×8 reps', cue: 'Explosive. Focus on landing soft.', equipment: 'Rack', img: IMG.gobletSquat },
+                { id: 'single-leg-rdl', name: 'Single Leg RDL', sets: '3×8 reps', cue: 'Progressive overload. Full control.', equipment: 'Rack', img: IMG.romanianDeadlift },
+                { id: 'pogo', name: 'Pogo Jumps', sets: '3×20 reps', cue: 'Quick, reactive. Stay on toes.', equipment: 'Floor', img: IMG.boxJumpMultipleResponse },
+                { id: 'single-leg-hop', name: 'Single Leg Hops', sets: '3×5 reps', cue: 'Distance progression. Quality landings.', equipment: 'Floor', img: IMG.singleLegHopProgression }
+            ]
+        };
+
+        // State
+        let currentRoutine = 'home';
+        let state = {};
+
+        // Initialize
+        function init() {
+            const today = getTodayKey();
+            state = JSON.parse(localStorage.getItem('acl_rehab_state') || '{}');
+            
+            if (!state[today]) {
+                state[today] = { home: {}, gym: {} };
+            }
+
+            updateUI();
+            setupEventListeners();
+        }
+
+        function getTodayKey() {
+            const now = new Date();
+            return now.getFullYear() + '-' + 
+                   String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                   String(now.getDate()).padStart(2, '0');
+        }
+
+        function getDayNumber() {
+            const now = new Date();
+            const start = new Date(START_DATE);
+            const diffTime = now - start;
+            return Math.max(0, Math.floor(diffTime / (1000 * 60 * 60 * 24)));
+        }
+
+        function getCurrentPhase(dayNumber) {
+            let cumulativeDays = 0;
+            for (let phase = 1; phase <= 5; phase++) {
+                cumulativeDays += PHASES[phase].duration;
+                if (dayNumber < cumulativeDays) return phase;
+            }
+            return 5;
+        }
+
+        function getPhaseProgress(dayNumber, phase) {
+            let startDays = 0;
+            for (let p = 1; p < phase; p++) startDays += PHASES[p].duration;
+            return Math.min(100, Math.max(0, ((dayNumber - startDays) / PHASES[phase].duration) * 100));
+        }
+
+        function updateUI() {
+            const dayNumber = getDayNumber();
+            const phase = getCurrentPhase(dayNumber);
+            const phaseData = PHASES[phase];
+
+            document.getElementById('phaseBadge').textContent = phaseData.name;
+            document.getElementById('dayInfo').textContent = 'Day ' + dayNumber + ' • ' + phaseData.weeks + ' weeks';
+            document.getElementById('progressFill').style.width = getPhaseProgress(dayNumber, phase) + '%';
+            document.querySelector('.phase-info h3').textContent = '📋 ' + phaseData.name + ' Focus (Weeks ' + phaseData.weeks + ')';
+            document.querySelector('.phase-info p').textContent = phaseData.focus;
+
+            renderExercises('home', HOME_EXERCISES[phase]);
+            renderExercises('gym', GYM_EXERCISES[phase]);
+            updateCounts();
+        }
+
+        function renderExercises(routine, exercises) {
+            const container = document.getElementById(routine + 'Exercises');
+            const today = getTodayKey();
+            const todayState = state[today] && state[today][routine] ? state[today][routine] : {};
+
+            container.innerHTML = exercises.map(function(ex) {
+                const parsed = parseSets(ex.sets);
+                const exerciseState = todayState[ex.id] || { completedSets: [] };
+                const completedCount = exerciseState.completedSets ? exerciseState.completedSets.length : 0;
+                const isExerciseComplete = completedCount >= parsed.sets;
+                const equipmentTag = ex.equipment ? '<span class="equipment-tag">' + ex.equipment + '</span>' : '';
+                
+                let setsHtml = '';
+                if (parsed.sets === 1 && parsed.reps === 'continuous') {
+                    // Time-based exercise (like bike, calf raises)
+                    const isComplete = exerciseState.completedSets && exerciseState.completedSets[0];
+                    setsHtml = '<div class="set-btn ' + (isComplete ? 'completed' : '') + '" onclick="toggleSet(\'' + routine + '\', \'' + ex.id + '\', 0)">✓</div>';
+                } else {
+                    for (let i = 0; i < parsed.sets; i++) {
+                        const isSetComplete = exerciseState.completedSets && exerciseState.completedSets[i];
+                        setsHtml += '<div class="set-btn ' + (isSetComplete ? 'completed' : '') + '" onclick="toggleSet(\'' + routine + '\', \'' + ex.id + '\', ' + i + ')">' + (i + 1) + '</div>';
+                    }
+                }
+
+                return '<div class="exercise-card ' + (isExerciseComplete ? 'completed' : '') + '" data-exercise="' + ex.id + '">' +
+                    '<div class="exercise-header">' +
+                    '<div class="exercise-info">' +
+                    '<div class="exercise-name">' + ex.name + equipmentTag + '</div>' +
+                    '<div class="exercise-reps">' + ex.sets + '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="exercise-content">' +
+                    '<div class="exercise-diagram">' +
+                    '<img src="' + ex.img + '" alt="' + ex.name + '" loading="lazy">' +
+                    '</div>' +
+                    '<div class="sets-container">' +
+                    '<div class="sets-grid">' + setsHtml + '</div>' +
+                    '<div class="exercise-cue">' + ex.cue + '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+            }).join('');
+        }
+
+        function toggleSet(routine, exerciseId, setIndex) {
+            const today = getTodayKey();
+            if (!state[today]) state[today] = { home: {}, gym: {} };
+            if (!state[today][routine]) state[today][routine] = {};
+            if (!state[today][routine][exerciseId]) {
+                state[today][routine][exerciseId] = { completedSets: [] };
+            }
+            if (!state[today][routine][exerciseId].completedSets) {
+                state[today][routine][exerciseId].completedSets = [];
+            }
+
+            // Toggle this set
+            if (state[today][routine][exerciseId].completedSets[setIndex]) {
+                state[today][routine][exerciseId].completedSets[setIndex] = false;
+            } else {
+                state[today][routine][exerciseId].completedSets[setIndex] = true;
+            }
+
+            localStorage.setItem('acl_rehab_state', JSON.stringify(state));
+            updateUI();
+        }
+
+        function updateCounts() {
+            const today = getTodayKey();
+            const todayState = state[today] || {};
+            const dayNumber = getDayNumber();
+            const phase = getCurrentPhase(dayNumber);
+            
+            const exercises = currentRoutine === 'home' ? HOME_EXERCISES[phase] : GYM_EXERCISES[phase];
+            
+            let totalSets = 0;
+            let completedSets = 0;
+
+            exercises.forEach(function(ex) {
+                const parsed = parseSets(ex.sets);
+                const exerciseState = todayState[currentRoutine] && todayState[currentRoutine][ex.id];
+                
+                if (parsed.sets === 1 && parsed.reps === 'continuous') {
+                    totalSets += 1;
+                    if (exerciseState && exerciseState.completedSets && exerciseState.completedSets[0]) {
+                        completedSets += 1;
+                    }
+                } else {
+                    totalSets += parsed.sets;
+                    if (exerciseState && exerciseState.completedSets) {
+                        completedSets += exerciseState.completedSets.filter(Boolean).length;
+                    }
+                }
+            });
+
+            document.getElementById('completedCount').textContent = completedSets;
+            document.getElementById('totalCount').textContent = totalSets;
+
+            // Show celebration if all exercises are done
+            const celebration = document.getElementById('celebration');
+            if (completedSets === totalSets && totalSets > 0) {
+                celebration.classList.add('show');
+            } else {
+                celebration.classList.remove('show');
+            }
+        }
+
+        function setupEventListeners() {
+            document.querySelectorAll('.tab').forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    currentRoutine = tab.dataset.routine;
+                    document.getElementById('homeRoutine').classList.toggle('hidden', currentRoutine !== 'home');
+                    document.getElementById('gymRoutine').classList.toggle('hidden', currentRoutine !== 'gym');
+                    updateCounts();
+                });
+            });
+        }
+
+        function resetDay() {
+            const today = getTodayKey();
+            if (confirm('Reset all exercises for today?')) {
+                state[today] = { home: {}, gym: {} };
+                localStorage.setItem('acl_rehab_state', JSON.stringify(state));
+                updateUI();
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
