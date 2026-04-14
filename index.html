@@ -168,6 +168,41 @@
             vertical-align: middle;
         }
 
+        .category-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+
+        .category-tag.strength { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .category-tag.mobility { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        .category-tag.extension { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+        .category-tag.stretch { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .category-tag.balance { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+        .category-tag.core { background: rgba(236, 72, 153, 0.2); color: #ec4899; }
+        .category-tag.plyometric { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+        .category-tag.agility { background: rgba(6, 182, 212, 0.2); color: #06b6d4; }
+
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-left: 8px;
+        }
+
+        .time-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
         .exercise-content {
             display: flex;
             gap: 12px;
@@ -561,8 +596,10 @@
                 const completedCount = exerciseState.completedSets ? exerciseState.completedSets.filter(Boolean).length : 0;
                 const isExerciseComplete = completedCount >= parsed.sets;
                 const equipmentTag = ex.equipment ? '<span class="equipment-tag">' + ex.equipment + '</span>' : '';
+                const categoryTag = ex.category ? '<span class="category-tag ' + ex.category + '">' + ex.category + '</span>' : '';
                 const imgUrl = ex.img ? getImageUrl(ex.img) : '';
                 const hasImage = routine === 'gym' && imgUrl;
+                const isTimeBased = ex.sets.includes('min');
                 
                 let setsHtml = '';
                 if (parsed.sets === 1 && parsed.reps === 'continuous') {
@@ -574,6 +611,9 @@
                         setsHtml += '<div class="set-btn ' + (isSetComplete ? 'completed' : '') + '" onclick="toggleSet(\'' + routine + '\', \'' + ex.id + '\', ' + i + ')">' + (i + 1) + '</div>';
                     }
                 }
+
+                // For time-based exercises, show a clock icon
+                const timeBadge = isTimeBased ? '<span class="time-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>' : '';
 
                 // Build steps HTML if available
                 let stepsHtml = '';
@@ -598,8 +638,8 @@
                 return '<div class="exercise-card ' + (isExerciseComplete ? 'completed' : '') + '" data-exercise="' + ex.id + '">' +
                     '<div class="exercise-header">' +
                     '<div class="exercise-info">' +
-                    '<div class="exercise-name">' + ex.name + equipmentTag + '</div>' +
-                    '<div class="exercise-reps">' + ex.sets + '</div>' +
+                    '<div class="exercise-name">' + ex.name + categoryTag + equipmentTag + '</div>' +
+                    '<div class="exercise-reps">' + timeBadge + ex.sets + '</div>' +
                     '</div>' +
                     '</div>' +
                     '<div class="exercise-content">' +
