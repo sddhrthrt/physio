@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "name": "ACL Recovery Program",
+    "description": "Evidence-based ACL rehabilitation exercise program",
+    "phases": 5,
+    "startDate": "2026-04-07",
+    "phasesConfig": {
+      "1": { "name": "Phase 1", "weeks": "0-2", "duration": 14 },
+      "2": { "name": "Phase 2", "weeks": "2-4", "duration": 14 },
+      "3": { "name": "Phase 3", "weeks": "4-8", "duration": 28 },
+      "4": { "name": "Phase 4", "weeks": "8-12", "duration": 28 },
+      "5": { "name": "Phase 5", "weeks": "12+", "duration": 84 }
+    },
+    "phaseFocus": {
+      "1": "Pain/inflammation control, quad activation, basic ROM",
+      "2": "Early strengthening, continued ROM restoration",
+      "3": "Progressive strengthening, closed-chain exercises",
+      "4": "Advanced strengthening, single-leg work",
+      "5": "Functional training, return to activity"
+    },
+    "images": {
+      "base": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises",
+      "exercises": {
+        "legExtensions": "Leg_Extensions/0.jpg",
+        "flatBenchLyingLegRaise": "Flat_Bench_Lying_Leg_Raise/0.jpg",
+        "buttLiftBridge": "Butt_Lift_Bridge/0.jpg",
+        "lyingGlute": "Lying_Glute/0.jpg",
+        "ballLegCurl": "Ball_Leg_Curl/0.jpg",
+        "singleLegGluteBridge": "Single_Leg_Glute_Bridge/0.jpg",
+        "bodyweightSquat": "Bodyweight_Squat/0.jpg",
+        "dumbbellStepUps": "Dumbbell_Step_Ups/0.jpg",
+        "balanceBoard": "Balance_Board/0.jpg",
+        "standingCalfRaises": "Standing_Calf_Raises/0.jpg",
+        "romanianDeadlift": "Romanian_Deadlift/0.jpg",
+        "splitSquats": "Split_Squats/0.jpg",
+        "lateralConeHops": "Lateral_Cone_Hops/0.jpg",
+        "boxJumpMultipleResponse": "Box_Jump_Multiple_Response/0.jpg",
+        "singleLegHopProgression": "Single-Leg_Hop_Progression/0.jpg",
+        "cariacoQuickStep": "Carioca_Quick_Step/0.jpg",
+        "bicyclingStationary": "Bicycling_Stationary/0.jpg",
+        "legPress": "Leg_Press/0.jpg",
+        "seatedLegCurl": "Seated_Leg_Curl/0.jpg",
+        "gobletSquat": "Goblet_Squat/0.jpg",
+        "seatedCalfRaise": "Seated_Calf_Raise/0.jpg",
+        "barbellSquat": "Barbell_Squat/0.jpg",
+        "barbellWalkingLunge": "Barbell_Walking_Lunge/0.jpg",
+        "gluteHamRaise": "Glute_Ham_Raise/0.jpg",
+        "singleLegLegExtension": "Single-Leg_Leg_Extension/0.jpg",
+        "barbellDeadlift": "Barbell_Deadlift/0.jpg",
+        "lyingLegCurls": "Lying_Leg_Curls/0.jpg",
+        "barbellSideSplitSquat": "Barbell_Side_Split_Squat/0.jpg"
+      }
+    }
+  },
+  "home": {
+    "1": [
+      { "id": "quad-sets", "name": "Quad Sets", "sets": "3×30 reps", "cue": "Squeeze quad muscle, press knee down into mat. Hold 2 seconds.", "img": "legExtensions" },
+      { "id": "heel-props", "name": "Heel Props", "sets": "5 min hold", "cue": "Heel on towel roll, ankle weight on knee. Relax and let knee straighten.", "img": "legExtensions" },
+      { "id": "heel-slides", "name": "Heel Slides", "sets": "3×15 reps", "cue": "Slide heel toward buttock, return slowly. Use strap if needed.", "img": "flatBenchLyingLegRaise" },
+      { "id": "slr", "name": "Straight Leg Raises", "sets": "3×15 reps", "cue": "Tighten quad, lift leg to height of opposite knee. Lower slowly.", "img": "flatBenchLyingLegRaise" },
+      { "id": "glute-bridges", "name": "Glute Bridges", "sets": "3×15 reps", "cue": "Squeeze glutes, lift hips. Keep core engaged.", "img": "buttLiftBridge" },
+      { "id": "clamshells", "name": "Clamshells", "sets": "3×15 reps", "cue": "Band above knees. Keep feet together, open knees like a clam.", "img": "lyingGlute" },
+      { "id": "hamstring-curl-band", "name": "Hamstring Curls", "sets": "3×15 reps", "cue": "Lie face down, band around ankle. Curl heel toward buttock.", "img": "ballLegCurl" }
+    ],
+    "2": [
+      { "id": "quad-sets", "name": "Quad Sets", "sets": "3×30 reps", "cue": "Squeeze quad, press knee down. Hold 2 seconds per rep.", "img": "legExtensions" },
+      { "id": "heel-slides", "name": "Heel Slides", "sets": "3×15 reps", "cue": "Slide heel toward buttock, hold 3 sec, return slowly.", "img": "flatBenchLyingLegRaise" },
+      { "id": "slr", "name": "Straight Leg Raises", "sets": "3×15 reps", "cue": "Lift with quad only—no swinging. Control the descent.", "img": "flatBenchLyingLegRaise" },
+      { "id": "short-arc-quad", "name": "Short Arc Quads", "sets": "3×15 reps", "cue": "Foam roll under knee, straighten leg. Hold at top.", "img": "legExtensions" },
+      { "id": "glute-bridges", "name": "Glute Bridges", "sets": "3×15 reps", "cue": "Drive through heels, squeeze glutes at top.", "img": "buttLiftBridge" },
+      { "id": "clamshells", "name": "Clamshells", "sets": "3×15 reps", "cue": "Rotate hip open, keep core braced. No rolling back.", "img": "lyingGlute" },
+      { "id": "single-leg-bridge", "name": "Single Leg Bridges", "sets": "3×10 reps", "cue": "Extend one leg, lift on injured side. More challenging.", "img": "singleLegGluteBridge" },
+      { "id": "terminal-knee-ext", "name": "Terminal Knee Extensions", "sets": "3×15 reps", "cue": "Band behind knee, pull forward to straighten.", "img": "legExtensions" }
+    ],
+    "3": [
+      { "id": "single-leg-bridge", "name": "Single Leg Bridges", "sets": "3×15 reps", "cue": "Extend one leg, lift on injured side. 3 sec hold at top.", "img": "singleLegGluteBridge" },
+      { "id": "clamshells", "name": "Clamshells", "sets": "3×20 reps", "cue": "Higher reps for endurance. Keep hips level.", "img": "lyingGlute" },
+      { "id": "standing-abduction", "name": "Standing Hip Abduction", "sets": "3×15 reps", "cue": "Band around ankles, lift leg out to side. Control return.", "img": "lyingGlute" },
+      { "id": "mini-squats", "name": "Mini Squats", "sets": "3×15 reps", "cue": "Hold counter for balance. Only go as low as comfortable.", "img": "bodyweightSquat" },
+      { "id": "step-ups", "name": "Step Ups", "sets": "3×10 reps", "cue": "Step up with injured leg. Control the descent.", "img": "dumbbellStepUps" },
+      { "id": "single-leg-stance", "name": "Single Leg Stance", "sets": "3×30 sec", "cue": "Stand on injured leg. Progress to eyes closed.", "img": "balanceBoard" },
+      { "id": "sliders", "name": "Hamstring Slider", "sets": "3×12 reps", "cue": "Lie on back, slide heel in and out. Squeeze glutes.", "img": "ballLegCurl" },
+      { "id": "calf-raises", "name": "Standing Calf Raises", "sets": "3×15 reps", "cue": "Rise onto toes, lower slowly. Hold wall for balance.", "img": "standingCalfRaises" }
+    ],
+    "4": [
+      { "id": "single-leg-rdl", "name": "Single Leg RDL", "sets": "3×10 reps", "cue": "Hinge at hip, extend free leg back. Use wall for balance.", "img": "romanianDeadlift" },
+      { "id": "split-squats", "name": "Split Squats", "sets": "3×10 reps", "cue": "Step back into lunge, lower until back knee taps floor.", "img": "splitSquats" },
+      { "id": "lateral-step-downs", "name": "Lateral Step Downs", "sets": "3×10 reps", "cue": "Stand on step, lower heel to floor. Don't collapse knee.", "img": "dumbbellStepUps" },
+      { "id": "band-walks", "name": "Band Walks", "sets": "3×12 reps", "cue": "Squat slightly, walk sideways into band. Keep tension.", "img": "lyingGlute" },
+      { "id": "single-leg-bridge", "name": "Single Leg Bridge", "sets": "3×15 reps", "cue": "Hold 3 sec at top. Progress by adding weight.", "img": "singleLegGluteBridge" },
+      { "id": "calf-raises", "name": "Single Leg Calf Raises", "sets": "3×12 reps", "cue": "Rise on injured leg only. Full range of motion.", "img": "standingCalfRaises" },
+      { "id": "single-leg-stance", "name": "Single Leg Stance", "sets": "3×45 sec", "cue": "Stand on cushion or pillow. Add head turns.", "img": "balanceBoard" },
+      { "id": "cossack-squats", "name": "Cossack Squats", "sets": "3×8 reps", "cue": "Wide stance, shift weight side to side. Hold counter.", "img": "barbellSideSplitSquat" }
+    ],
+    "5": [
+      { "id": "single-leg-squat", "name": "Single Leg Squat", "sets": "3×10 reps", "cue": "Lower to box/chair. Control descent. No bouncing.", "img": "splitSquats" },
+      { "id": "single-leg-rdl", "name": "Single Leg RDL", "sets": "3×12 reps", "cue": "Hinge with weight in opposite hand. Back straight.", "img": "romanianDeadlift" },
+      { "id": "jumping", "name": "Double Leg Jumps", "sets": "3×10 reps", "cue": "Jump off floor, land soft. Both feet together.", "img": "boxJumpMultipleResponse" },
+      { "id": "lateral-hop", "name": "Lateral Hops", "sets": "3×8 reps", "cue": "Hop side to side over line. Land controlled.", "img": "lateralConeHops" },
+      { "id": "pogo", "name": "Pogo Jumps", "sets": "3×15 reps", "cue": "Quick hops, stay on balls of feet. Minimal ground time.", "img": "boxJumpMultipleResponse" },
+      { "id": "single-leg-hop", "name": "Single Leg Hops", "sets": "3×5 reps", "cue": "Hop forward. Focus on landing quality, not distance.", "img": "singleLegHopProgression" },
+      { "id": "carioca", "name": "Carioca/Grapevine", "sets": "3×30 sec", "cue": "Lateral crossing steps. Maintain balance.", "img": "cariacoQuickStep" },
+      { "id": "box-jumps", "name": "Box Jumps", "sets": "3×8 reps", "cue": "Jump onto box. Step down. Control the landing.", "img": "boxJumpMultipleResponse" }
+    ]
+  },
+  "gym": {
+    "1": [
+      { "id": "bike", "name": "Stationary Bike", "sets": "15-20 min", "cue": "Low resistance, focus on full pedal circle. Warm up.", "equipment": "Bikes", "img": "bicyclingStationary" },
+      { "id": "leg-press", "name": "Leg Press", "sets": "3×15 reps", "cue": "Only go to 45° knee bend. Focus on quad control.", "equipment": "Machine", "img": "legPress" },
+      { "id": "seated-hamcurl", "name": "Seated Hamstring Curls", "sets": "3×15 reps", "cue": "Control the eccentric. No jerky movements.", "equipment": "Ham Curl", "img": "seatedLegCurl" },
+      { "id": "cable-tke", "name": "Cable Terminal Knee Ext", "sets": "3×15 reps", "cue": "90° to 45° range. Squeeze quad at full extension.", "equipment": "Cable", "img": "legExtensions" },
+      { "id": "ball-curl", "name": "Exercise Ball Curls", "sets": "3×12 reps", "cue": "Bridge up, roll ball with heels. Control the return.", "equipment": "Ball", "img": "ballLegCurl" },
+      { "id": "leg-extension", "name": "Leg Extensions", "sets": "3×15 reps", "cue": "90° to full extension. No pad pressure on shin.", "equipment": "Machine", "img": "legExtensions" }
+    ],
+    "2": [
+      { "id": "bike", "name": "Stationary Bike", "sets": "15-20 min", "cue": "Increase resistance slightly. Full circles.", "equipment": "Bikes", "img": "bicyclingStationary" },
+      { "id": "leg-press", "name": "Leg Press", "sets": "3×15 reps", "cue": "Deeper range now. Both legs, then single leg variations.", "equipment": "Machine", "img": "legPress" },
+      { "id": "seated-hamcurl", "name": "Seated Hamstring Curls", "sets": "3×15 reps", "cue": "Both legs, then single. Full range.", "equipment": "Ham Curl", "img": "seatedLegCurl" },
+      { "id": "goblet-squat", "name": "Goblet Squats", "sets": "3×12 reps", "cue": "Hold weight at chest. Keep chest up, knees out.", "equipment": "Rack", "img": "gobletSquat" },
+      { "id": "step-ups", "name": "Step Ups", "sets": "3×12 reps", "cue": "Use low step. Drive through heel, not toes.", "equipment": "Floor", "img": "dumbbellStepUps" },
+      { "id": "prone-tke", "name": "Prone Terminal Knee Ext", "sets": "3×15 reps", "cue": "Cable behind knee, lie prone. Extend fully.", "equipment": "Cable", "img": "legExtensions" },
+      { "id": "calf-raise-machine", "name": "Seated Calf Raises", "sets": "3×15 reps", "cue": "Full stretch at bottom, rise fully on toes.", "equipment": "Machine", "img": "seatedCalfRaise" }
+    ],
+    "3": [
+      { "id": "bike", "name": "Stationary Bike", "sets": "20-30 min", "cue": "Moderate resistance. Warm up first.", "equipment": "Bikes", "img": "bicyclingStationary" },
+      { "id": "leg-press-single", "name": "Single Leg Press", "sets": "3×12 reps", "cue": "Focus on the injured leg. Full range.", "equipment": "Machine", "img": "legPress" },
+      { "id": "goblet-squat", "name": "Goblet Squats", "sets": "3×15 reps", "cue": "Deeper squat, heavier weight. Chest up.", "equipment": "Rack", "img": "gobletSquat" },
+      { "id": "bulgarian-split", "name": "Bulgarian Split Squats", "sets": "3×10 reps", "cue": "Back foot elevated on bench. Hold rack for balance.", "equipment": "Rack/Bench", "img": "splitSquats" },
+      { "id": "rdl", "name": "Romanian Deadlifts", "sets": "3×12 reps", "cue": "Hinge at hips, keep bar close. Feel hamstrings.", "equipment": "Rack", "img": "romanianDeadlift" },
+      { "id": "standing-hamcurl", "name": "Standing Hamstring Curls", "sets": "3×12 reps", "cue": "Single leg. Control the negative.", "equipment": "Ham Curl", "img": "lyingLegCurls" },
+      { "id": "leg-extension", "name": "Leg Extensions", "sets": "3×15 reps", "cue": "Slow and controlled. Full squeeze at top.", "equipment": "Machine", "img": "legExtensions" },
+      { "id": "hip-sled", "name": "Hip Sled", "sets": "3×15 reps", "cue": "Focus on quad control through full range.", "equipment": "Machine", "img": "legPress" }
+    ],
+    "4": [
+      { "id": "bike", "name": "Bike or Elliptical", "sets": "25-30 min", "cue": "Higher intensity intervals if tolerated.", "equipment": "Bikes", "img": "bicyclingStationary" },
+      { "id": "back-squat", "name": "Back Squats", "sets": "3×12 reps", "cue": "Focus on form. Box squats for control.", "equipment": "Rack", "img": "barbellSquat" },
+      { "id": "bulgarian-split", "name": "Bulgarian Split Squats", "sets": "3×12 reps", "cue": "No hands. Full depth if possible.", "equipment": "Rack/Bench", "img": "splitSquats" },
+      { "id": "rdl-single", "name": "Single Leg RDL", "sets": "3×10 reps", "cue": "Dumbbell in opposite hand. Hip hinge.", "equipment": "Rack", "img": "romanianDeadlift" },
+      { "id": "leg-press-heavy", "name": "Leg Press", "sets": "3×10 reps", "cue": "Progressive overload. Full range.", "equipment": "Machine", "img": "legPress" },
+      { "id": "walking-lunges", "name": "Walking Lunges", "sets": "3×12 reps", "cue": "Long stride, controlled. Hold dumbbells.", "equipment": "Rack", "img": "barbellWalkingLunge" },
+      { "id": "nordic-curl-neg", "name": "Nordic Curl Negatives", "sets": "3×8 reps", "cue": "Slow eccentric only. Catch with hands.", "equipment": "Floor", "img": "gluteHamRaise" },
+      { "id": "single-leg-extension", "name": "Single Leg Extensions", "sets": "3×12 reps", "cue": "Full control. No swinging.", "equipment": "Machine", "img": "singleLegLegExtension" }
+    ],
+    "5": [
+      { "id": "bike", "name": "Bike / Rowing", "sets": "30-40 min", "cue": "Include intervals. Build conditioning.", "equipment": "Bikes", "img": "bicyclingStationary" },
+      { "id": "back-squat", "name": "Back Squats", "sets": "4×8 reps", "cue": "Working sets. Focus on depth and form.", "equipment": "Rack", "img": "barbellSquat" },
+      { "id": "deadlift", "name": "Deadlifts", "sets": "4×6 reps", "cue": "Conventional or sumo. Keep back neutral.", "equipment": "Rack", "img": "barbellDeadlift" },
+      { "id": "single-leg-squat", "name": "Bulgarian Split Squats", "sets": "3×10 reps", "cue": "Unilateral strength. No hands.", "equipment": "Rack/Bench", "img": "splitSquats" },
+      { "id": "jump-squats", "name": "Jump Squats", "sets": "3×8 reps", "cue": "Explosive. Focus on landing soft.", "equipment": "Rack", "img": "gobletSquat" },
+      { "id": "single-leg-rdl", "name": "Single Leg RDL", "sets": "3×8 reps", "cue": "Progressive overload. Full control.", "equipment": "Rack", "img": "romanianDeadlift" },
+      { "id": "pogo", "name": "Pogo Jumps", "sets": "3×20 reps", "cue": "Quick, reactive. Stay on toes.", "equipment": "Floor", "img": "boxJumpMultipleResponse" },
+      { "id": "single-leg-hop", "name": "Single Leg Hops", "sets": "3×5 reps", "cue": "Distance progression. Quality landings.", "equipment": "Floor", "img": "singleLegHopProgression" }
+    ]
+  }
+}
