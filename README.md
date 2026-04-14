@@ -2,6 +2,14 @@
 
 An AI-built ACL & meniscus recovery tracker, built entirely with AI assistance as a learning project.
 
+## Screenshots
+
+<p float="left">
+  <img src="screenshots/home-tab.png" width="150" />
+  <img src="screenshots/gym-tab.png" width="150" />
+  <img src="screenshots/ai-tab.png" width="150" />
+</p>
+
 ## What This Is
 
 A webapp for tracking daily ACL/meniscus rehabilitation exercises with:
