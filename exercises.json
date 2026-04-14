@@ -54,53 +54,482 @@
   },
   "home": {
     "1": [
-      { "id": "quad-sets", "name": "Quad Sets", "sets": "3×30 reps", "cue": "Squeeze quad muscle, press knee down into mat. Hold 2 seconds." },
-      { "id": "heel-props", "name": "Heel Props", "sets": "5 min hold", "cue": "Heel on towel roll, ankle weight on knee. Relax and let knee straighten." },
-      { "id": "heel-slides", "name": "Heel Slides", "sets": "3×15 reps", "cue": "Slide heel toward buttock, return slowly. Use strap if needed." },
-      { "id": "slr", "name": "Straight Leg Raises", "sets": "3×15 reps", "cue": "Tighten quad, lift leg to height of opposite knee. Lower slowly." },
-      { "id": "glute-bridges", "name": "Glute Bridges", "sets": "3×15 reps", "cue": "Squeeze glutes, lift hips. Keep core engaged." },
-      { "id": "clamshells", "name": "Clamshells", "sets": "3×15 reps", "cue": "Band above knees. Keep feet together, open knees like a clam." },
-      { "id": "hamstring-curl-band", "name": "Hamstring Curls", "sets": "3×15 reps", "cue": "Lie face down, band around ankle. Curl heel toward buttock." }
+      {
+        "id": "quad-sets",
+        "name": "Quad Sets",
+        "sets": "3×30 reps",
+        "steps": [
+          "Lie on your back on the floor",
+          "Straighten your injured leg",
+          "Push the back of your knee into the floor by tightening your quad",
+          "Hold for 2 seconds, release, repeat"
+        ],
+        "feel": "You should feel your quad muscle tighten and burn on top of your thigh."
+      },
+      {
+        "id": "heel-props",
+        "name": "Heel Props",
+        "sets": "5 min hold",
+        "steps": [
+          "Place a rolled towel or foam roller under your heel",
+          "Put a light weight (2-5 lbs) on your thigh just above the knee",
+          "Relax your leg completely and let gravity straighten it",
+          "Hold for 5 minutes total, relax and breathe"
+        ],
+        "feel": "You should feel a gentle stretch in the back of your knee and calf. The quad is fully relaxed."
+      },
+      {
+        "id": "heel-slides",
+        "name": "Heel Slides",
+        "sets": "3×15 reps",
+        "steps": [
+          "Lie on your back with legs straight",
+          "Slowly slide your heel toward your buttock, bending your knee",
+          "Hold at maximum bend for 3 seconds",
+          "Slowly slide back to starting position"
+        ],
+        "feel": "You should feel your hamstring engage as you slide, and a gentle stretch in the knee."
+      },
+      {
+        "id": "slr",
+        "name": "Straight Leg Raises",
+        "sets": "3×15 reps",
+        "steps": [
+          "Lie on your back, one leg bent with foot flat",
+          "Keep your injured leg completely straight",
+          "Tighten your quad and lift the leg to the height of the opposite bent knee",
+          "Lower slowly—take 3 seconds down, don't drop"
+        ],
+        "feel": "You should feel your quad working hard on top of your thigh. No pain in the knee."
+      },
+      {
+        "id": "glute-bridges",
+        "name": "Glute Bridges",
+        "sets": "3×15 reps",
+        "steps": [
+          "Lie on your back with knees bent, feet flat on floor hip-width apart",
+          "Push through your heels to lift your hips toward the ceiling",
+          "Squeeze your glutes at the top—hips should be fully elevated",
+          "Lower slowly back down, maintain glute engagement"
+        ],
+        "feel": "You should feel your glutes and hamstrings working. Lower back stays comfortable."
+      },
+      {
+        "id": "clamshells",
+        "name": "Clamshells",
+        "sets": "3×15 reps",
+        "steps": [
+          "Lie on your side with knees bent 90°, feet together",
+          "Place a band around both thighs just above the knees",
+          "Keep your feet touching—rotate your top knee upward like opening a clam",
+          "Control the return—don't let the band snap your legs back"
+        ],
+        "feel": "You should feel a burn in your outer hip and glute. Keep core braced to prevent rolling."
+      },
+      {
+        "id": "hamstring-curl-band",
+        "name": "Hamstring Curls",
+        "sets": "3×15 reps",
+        "steps": [
+          "Lie face down with a resistance band around your ankle",
+          "Secure the band under your opposite foot or to a fixed point",
+          "Curl your heel toward your buttock, bending the knee",
+          "Lower slowly and with control—3 seconds down"
+        ],
+        "feel": "You should feel the back of your thigh working. Keep hips pressed to the floor."
+      }
     ],
     "2": [
-      { "id": "quad-sets", "name": "Quad Sets", "sets": "3×30 reps", "cue": "Squeeze quad, press knee down. Hold 2 seconds per rep." },
-      { "id": "heel-slides", "name": "Heel Slides", "sets": "3×15 reps", "cue": "Slide heel toward buttock, hold 3 sec, return slowly." },
-      { "id": "slr", "name": "Straight Leg Raises", "sets": "3×15 reps", "cue": "Lift with quad only—no swinging. Control the descent." },
-      { "id": "short-arc-quad", "name": "Short Arc Quads", "sets": "3×15 reps", "cue": "Foam roll under knee, straighten leg. Hold at top." },
-      { "id": "glute-bridges", "name": "Glute Bridges", "sets": "3×15 reps", "cue": "Drive through heels, squeeze glutes at top." },
-      { "id": "clamshells", "name": "Clamshells", "sets": "3×15 reps", "cue": "Rotate hip open, keep core braced. No rolling back." },
-      { "id": "single-leg-bridge", "name": "Single Leg Bridges", "sets": "3×10 reps", "cue": "Extend one leg, lift on injured side. More challenging." },
-      { "id": "terminal-knee-ext", "name": "Terminal Knee Extensions", "sets": "3×15 reps", "cue": "Band behind knee, pull forward to straighten." }
+      {
+        "id": "quad-sets",
+        "name": "Quad Sets",
+        "sets": "3×30 reps",
+        "steps": [
+          "Lie on your back on the floor",
+          "Straighten your injured leg completely",
+          "Tighten your quad hard—press the back of your knee down",
+          "Hold 2 seconds, fully release, repeat without rest between reps"
+        ],
+        "feel": "You should feel your quad muscle squeeze hard on top of your thigh."
+      },
+      {
+        "id": "heel-slides",
+        "name": "Heel Slides",
+        "sets": "3×15 reps",
+        "steps": [
+          "Start with legs straight, lie on your back",
+          "Slide heel toward buttock, bending knee fully",
+          "Hold bent position for 3 seconds at peak contraction",
+          "Slide back to straight leg slowly—take 3 seconds"
+        ],
+        "feel": "You should feel hamstring engagement on the slide back, knee flexion stretch."
+      },
+      {
+        "id": "slr",
+        "name": "Straight Leg Raises",
+        "sets": "3×15 reps",
+        "steps": [
+          "Lie on your back, uninjured leg bent with foot planted",
+          "Injured leg stays straight, quad tight",
+          "Lift leg to the height of your bent knee—lead with the heel",
+          "Lower in 3 seconds—no swinging, no dropping"
+        ],
+        "feel": "You should feel quad fatigue building. Controlled, smooth movement only."
+      },
+      {
+        "id": "short-arc-quad",
+        "name": "Short Arc Quads",
+        "sets": "3×15 reps",
+        "steps": [
+          "Place a foam roller or rolled towel under your knee",
+          "With knee resting on the roll, straighten your leg",
+          "Lift heel so only the back of your knee touches the roll",
+          "Hold at full extension for 2 seconds, lower slowly"
+        ],
+        "feel": "You should feel quad engagement through a partial range—gentle on the knee."
+      },
+      {
+        "id": "glute-bridges",
+        "name": "Glute Bridges",
+        "sets": "3×15 reps",
+        "steps": [
+          "Lie on back, feet flat, knees bent, arms relaxed",
+          "Drive through heels—lift hips until body forms a straight line",
+          "Squeeze glutes hard at the top—hold 1 second",
+          "Lower in 2-3 seconds, maintain tension throughout"
+        ],
+        "feel": "You should feel glutes working hard. Back should stay neutral, no arching."
+      },
+      {
+        "id": "clamshells",
+        "name": "Clamshells",
+        "sets": "3×15 reps",
+        "steps": [
+          "Side-lying with knees bent 90°, feet together, band around thighs",
+          "Keep feet touching—rotate top knee upward without rolling back",
+          "Lift knee as high as possible while maintaining position",
+          "Lower slowly against band resistance—3 seconds"
+        ],
+        "feel": "You should feel outer hip and glute burn. Core stays braced, no back rolling."
+      },
+      {
+        "id": "single-leg-bridge",
+        "name": "Single Leg Bridges",
+        "sets": "3×10 reps",
+        "steps": [
+          "Lie on back, one knee bent with foot flat, other leg straight",
+          "Push through the planted foot to lift hips",
+          "Extend fully at top—body forms straight line on bent leg side",
+          "Lower slowly, maintain control throughout"
+        ],
+        "feel": "You should feel glute and hamstring working harder on one side. Core engaged."
+      },
+      {
+        "id": "terminal-knee-ext",
+        "name": "Terminal Knee Extensions",
+        "sets": "3×15 reps",
+        "steps": [
+          "Sit with band anchored behind you, loop around front of shin",
+          "Knee bent at 90°, pull band to straighten leg",
+          "Fully straighten, squeeze quad at full extension",
+          "Return to 90° slowly—resist the band on the way back"
+        ],
+        "feel": "You should feel quad working through the last 45° of extension."
+      }
     ],
     "3": [
-      { "id": "single-leg-bridge", "name": "Single Leg Bridges", "sets": "3×15 reps", "cue": "Extend one leg, lift on injured side. 3 sec hold at top." },
-      { "id": "clamshells", "name": "Clamshells", "sets": "3×20 reps", "cue": "Higher reps for endurance. Keep hips level." },
-      { "id": "standing-abduction", "name": "Standing Hip Abduction", "sets": "3×15 reps", "cue": "Band around ankles, lift leg out to side. Control return." },
-      { "id": "mini-squats", "name": "Mini Squats", "sets": "3×15 reps", "cue": "Hold counter for balance. Only go as low as comfortable." },
-      { "id": "step-ups", "name": "Step Ups", "sets": "3×10 reps", "cue": "Step up with injured leg. Control the descent." },
-      { "id": "single-leg-stance", "name": "Single Leg Stance", "sets": "3×30 sec", "cue": "Stand on injured leg. Progress to eyes closed." },
-      { "id": "sliders", "name": "Hamstring Slider", "sets": "3×12 reps", "cue": "Lie on back, slide heel in and out. Squeeze glutes." },
-      { "id": "calf-raises", "name": "Standing Calf Raises", "sets": "3×15 reps", "cue": "Rise onto toes, lower slowly. Hold wall for balance." }
+      {
+        "id": "single-leg-bridge",
+        "name": "Single Leg Bridges",
+        "sets": "3×15 reps",
+        "steps": [
+          "Lie on back, one foot planted, opposite leg straight in air",
+          "Lift hips by driving through the planted heel",
+          "At the top, your body should form a straight line from shoulders to extended foot",
+          "Hold 3 seconds at top, lower with control—4 seconds down"
+        ],
+        "feel": "You should feel intense glute burn on the working side. Core braced tight."
+      },
+      {
+        "id": "clamshells",
+        "name": "Clamshells",
+        "sets": "3×20 reps",
+        "steps": [
+          "Side-lying, knees bent, band around thighs",
+          "Feet stay together—open top knee against resistance",
+          "Go slow on the way up, even slower on the way down",
+          "Don't let your hip roll back or body twist"
+        ],
+        "feel": "You should feel hip abductor fatigue building. Steady, controlled movement."
+      },
+      {
+        "id": "standing-abduction",
+        "name": "Standing Hip Abduction",
+        "sets": "3×15 reps",
+        "steps": [
+          "Stand tall, band around both ankles",
+          "Lift one leg out to the side—lead with the heel",
+          "Keep standing leg slightly bent, don't lean",
+          "Lower slowly and with control—don't drop the leg"
+        ],
+        "feel": "You should feel outer hip and glute working. Standing leg stays strong."
+      },
+      {
+        "id": "mini-squats",
+        "name": "Mini Squats",
+        "sets": "3×15 reps",
+        "steps": [
+          "Stand in front of a counter or wall for support",
+          "Feet hip-width apart, toes forward",
+          "Bend knees slightly and push hips back—like sitting in a chair",
+          "Only go down 3-4 inches—stand back up, stay upright"
+        ],
+        "feel": "You should feel quad and glute engagement. Knee tracks over toes."
+      },
+      {
+        "id": "step-ups",
+        "name": "Step Ups",
+        "sets": "3×10 reps",
+        "steps": [
+          "Use a low step (4-6 inches), stand facing it",
+          "Step up with your injured leg first",
+          "Drive through the heel, fully straighten at the top",
+          "Step down with control—don't bounce or slam"
+        ],
+        "feel": "You should feel quad and glute working. Control the descent slowly."
+      },
+      {
+        "id": "single-leg-stance",
+        "name": "Single Leg Stance",
+        "sets": "3×30 sec",
+        "steps": [
+          "Stand on your injured leg near a wall for safety",
+          "Slightly bend the standing knee, engage the glute",
+          "Arms can be at sides or for balance",
+          "Progress by closing eyes or adding head turns"
+        ],
+        "feel": "You should feel ankle and hip stabilizing. Core stays tight."
+      },
+      {
+        "id": "sliders",
+        "name": "Hamstring Slider",
+        "sets": "3×12 reps",
+        "steps": [
+          "Lie on back with heels on a smooth surface (sock on floor works)",
+          "Lift hips into a bridge position—heels near buttock",
+          "Slide heels away, extending legs while keeping hips up",
+          "Pull heels back to start—squeeze glutes throughout"
+        ],
+        "feel": "You should feel hamstring burn and glute engagement. Hips stay high."
+      },
+      {
+        "id": "calf-raises",
+        "name": "Standing Calf Raises",
+        "sets": "3×15 reps",
+        "steps": [
+          "Stand facing a wall for balance, feet hip-width apart",
+          "Rise onto the balls of your feet—lift heels as high as possible",
+          "Hold at the top for 1 second",
+          "Lower slowly—take 3 seconds down, full stretch at bottom"
+        ],
+        "feel": "You should feel calf muscle tighten. Both legs, or focus on injured side."
+      }
     ],
     "4": [
-      { "id": "single-leg-rdl", "name": "Single Leg RDL", "sets": "3×10 reps", "cue": "Hinge at hip, extend free leg back. Use wall for balance." },
-      { "id": "split-squats", "name": "Split Squats", "sets": "3×10 reps", "cue": "Step back into lunge, lower until back knee taps floor." },
-      { "id": "lateral-step-downs", "name": "Lateral Step Downs", "sets": "3×10 reps", "cue": "Stand on step, lower heel to floor. Don't collapse knee." },
-      { "id": "band-walks", "name": "Band Walks", "sets": "3×12 reps", "cue": "Squat slightly, walk sideways into band. Keep tension." },
-      { "id": "single-leg-bridge", "name": "Single Leg Bridge", "sets": "3×15 reps", "cue": "Hold 3 sec at top. Progress by adding weight." },
-      { "id": "calf-raises", "name": "Single Leg Calf Raises", "sets": "3×12 reps", "cue": "Rise on injured leg only. Full range of motion." },
-      { "id": "single-leg-stance", "name": "Single Leg Stance", "sets": "3×45 sec", "cue": "Stand on cushion or pillow. Add head turns." },
-      { "id": "cossack-squats", "name": "Cossack Squats", "sets": "3×8 reps", "cue": "Wide stance, shift weight side to side. Hold counter." }
+      {
+        "id": "single-leg-rdl",
+        "name": "Single Leg RDL",
+        "sets": "3×10 reps",
+        "steps": [
+          "Stand on injured leg, slight bend in the knee",
+          "Hinge at the hip—push your butt back while extending free leg behind",
+          "Keep your back flat, torso nearly parallel to the ground",
+          "Return to standing by squeezing glute and hamstring"
+        ],
+        "feel": "You should feel hamstring and glute working. Standing leg stays strong."
+      },
+      {
+        "id": "split-squats",
+        "name": "Split Squats",
+        "sets": "3×10 reps",
+        "steps": [
+          "Stand in a split stance—one foot forward, one back",
+          "Back heel elevated slightly on toes",
+          "Bend front knee, lower until back knee nearly touches floor",
+          "Push through front heel to return to start"
+        ],
+        "feel": "You should feel quad and glute working. Front knee tracks over toes."
+      },
+      {
+        "id": "lateral-step-downs",
+        "name": "Lateral Step Downs",
+        "sets": "3×10 reps",
+        "steps": [
+          "Stand on a low step (4-6 inches), injured leg on the edge",
+          "Slowly lower your other heel toward the floor",
+          "Keep your knee tracking over your toes—don't let it collapse inward",
+          "Push through the standing leg to return up"
+        ],
+        "feel": "You should feel quad working eccentrically. Knee stays stable."
+      },
+      {
+        "id": "band-walks",
+        "name": "Band Walks",
+        "sets": "3×12 reps",
+        "steps": [
+          "Place band around both ankles or above knees",
+          "Squat slightly—hinge hips back like sitting in a chair",
+          "Take 6-8 steps to one side, maintaining band tension",
+          "Reverse direction, come back to start"
+        ],
+        "feel": "You should feel outer hip and glute burn. Knees stay over toes."
+      },
+      {
+        "id": "single-leg-bridge",
+        "name": "Single Leg Bridge",
+        "sets": "3×15 reps",
+        "steps": [
+          "Lie on back, single leg extended",
+          "Drive through the grounded heel, lift hips high",
+          "Hold 3 seconds at the top with full hip extension",
+          "Lower slowly—glute stays engaged throughout"
+        ],
+        "feel": "You should feel glute fatigue building. Core stays tight."
+      },
+      {
+        "id": "calf-raises",
+        "name": "Single Leg Calf Raises",
+        "sets": "3×12 reps",
+        "steps": [
+          "Stand on injured leg only, other leg bent behind",
+          "Rise up onto the ball of your foot as high as possible",
+          "Hold at the top for 1 second",
+          "Lower slowly for 3 seconds—full stretch at bottom"
+        ],
+        "feel": "You should feel calf working hard. Balance is challenging—hold wall."
+      },
+      {
+        "id": "single-leg-stance",
+        "name": "Single Leg Stance",
+        "sets": "3×45 sec",
+        "steps": [
+          "Stand on injured leg, slight knee bend",
+          "Progress to standing on a pillow or cushion for instability",
+          "Close eyes, add head turns, or catch a ball",
+          "Maintain upright posture, core braced throughout"
+        ],
+        "feel": "You should feel ankle and hip stabilizers working hard. Balance challenged."
+      },
+      {
+        "id": "cossack-squats",
+        "name": "Cossack Squats",
+        "sets": "3×8 reps",
+        "steps": [
+          "Stand with feet wide apart, toes pointed out",
+          "Shift weight to one side, bending that knee deeply",
+          "Keep the other leg straight—heel down, toes up",
+          "Push through the bent leg to return, alternate sides"
+        ],
+        "feel": "You should feel inner thigh and quad working on the bent side."
+      }
     ],
     "5": [
-      { "id": "single-leg-squat", "name": "Single Leg Squat", "sets": "3×10 reps", "cue": "Lower to box/chair. Control descent. No bouncing." },
-      { "id": "single-leg-rdl", "name": "Single Leg RDL", "sets": "3×12 reps", "cue": "Hinge with weight in opposite hand. Back straight." },
-      { "id": "jumping", "name": "Double Leg Jumps", "sets": "3×10 reps", "cue": "Jump off floor, land soft. Both feet together." },
-      { "id": "lateral-hop", "name": "Lateral Hops", "sets": "3×8 reps", "cue": "Hop side to side over line. Land controlled." },
-      { "id": "pogo", "name": "Pogo Jumps", "sets": "3×15 reps", "cue": "Quick hops, stay on balls of feet. Minimal ground time." },
-      { "id": "single-leg-hop", "name": "Single Leg Hops", "sets": "3×5 reps", "cue": "Hop forward. Focus on landing quality, not distance." },
-      { "id": "carioca", "name": "Carioca/Grapevine", "sets": "3×30 sec", "cue": "Lateral crossing steps. Maintain balance." },
-      { "id": "box-jumps", "name": "Box Jumps", "sets": "3×8 reps", "cue": "Jump onto box. Step down. Control the landing." }
+      {
+        "id": "single-leg-squat",
+        "name": "Single Leg Squat",
+        "sets": "3×10 reps",
+        "steps": [
+          "Stand on injured leg in front of a box or chair",
+          "Extend other leg slightly forward for balance",
+          "Slowly lower yourself until you touch the box",
+          "Drive through your heel to stand back up—no pushing off the floor"
+        ],
+        "feel": "You should feel quad and glute working. Knee stays stable over toes."
+      },
+      {
+        "id": "single-leg-rdl",
+        "name": "Single Leg RDL",
+        "sets": "3×12 reps",
+        "steps": [
+          "Stand on injured leg holding a light dumbbell in opposite hand",
+          "Hinge at hips, extend free leg behind for balance",
+          "Keep back flat, torso nearly parallel to floor",
+          "Return to standing—squeeze glute at the top"
+        ],
+        "feel": "You should feel hamstring and glute working hard. Core braced tight."
+      },
+      {
+        "id": "jumping",
+        "name": "Double Leg Jumps",
+        "sets": "3×10 reps",
+        "steps": [
+          "Stand with feet shoulder-width, knees slightly bent",
+          "Jump up explosively, extend hips and knees fully",
+          "Land softly on the balls of your feet",
+          "Immediately jump again—minimize ground contact time"
+        ],
+        "feel": "You should feel powerful leg drive. Knees stay aligned, land soft."
+      },
+      {
+        "id": "lateral-hop",
+        "name": "Lateral Hops",
+        "sets": "3×8 reps",
+        "steps": [
+          "Stand sideways to a line or marker on the floor",
+          "Jump sideways over the line with both feet together",
+          "Land on the balls of your feet, absorb the impact",
+          "Jump back to the starting side immediately"
+        ],
+        "feel": "You should feel lateral quad and glute working. Land controlled."
+      },
+      {
+        "id": "pogo",
+        "name": "Pogo Jumps",
+        "sets": "3×15 reps",
+        "steps": [
+          "Stand with feet together, knees slightly bent",
+          "Jump up rapidly, staying on the balls of your feet",
+          "Immediately spring back up—minimize time on the ground",
+          "Stay as high as possible with quick, reactive jumps"
+        ],
+        "feel": "You should feel calves and ankles working. Light, springy movement."
+      },
+      {
+        "id": "single-leg-hop",
+        "name": "Single Leg Hops",
+        "sets": "3×5 reps",
+        "steps": [
+          "Stand on injured leg only",
+          "Jump forward—not far, focus on quality",
+          "Land on the same leg softly—absorb through knee and hip",
+          "Reset and repeat—focus on landing quality over distance"
+        ],
+        "feel": "You should feel power from your leg. Landing should feel controlled."
+      },
+      {
+        "id": "carioca",
+        "name": "Carioca/Grapevine",
+        "sets": "3×30 sec",
+        "steps": [
+          "Stand sideways, step one foot in front of the other",
+          "Cross the back foot behind, then in front",
+          "Keep the rhythm going—walk sideways quickly",
+          "After 15 seconds, reverse direction"
+        ],
+        "feel": "You should feel hip flexibility and coordination. Core stays engaged."
+      },
+      {
+        "id": "box-jumps",
+        "name": "Box Jumps",
+        "sets": "3×8 reps",
+        "steps": [
+          "Stand facing a low box (8-12 inches)",
+          "Jump explosively, driving knees up",
+          "Land softly on top of the box—both feet together",
+          "Step back down (don't jump down), reset, repeat"
+        ],
+        "feel": "You should feel powerful leg drive. Land soft, quiet on the box."
+      }
     ]
   },
   "gym": {

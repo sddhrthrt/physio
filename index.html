@@ -256,7 +256,35 @@
         .exercise-cue {
             font-size: 0.8rem;
             color: var(--text-secondary);
-            margin-top: 4px;
+            margin-top: 8px;
+        }
+
+        .exercise-steps {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .exercise-steps ol {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .exercise-steps li {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .exercise-feel {
+            margin-top: 10px;
+            padding: 8px 10px;
+            background: rgba(74, 222, 128, 0.1);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-style: italic;
         }
 
         .completion-celebration {
@@ -547,6 +575,22 @@
                     }
                 }
 
+                // Build steps HTML if available
+                let stepsHtml = '';
+                if (ex.steps && ex.steps.length > 0) {
+                    stepsHtml = '<div class="exercise-steps"><ol>';
+                    ex.steps.forEach(function(step) {
+                        stepsHtml += '<li>' + step + '</li>';
+                    });
+                    stepsHtml += '</ol></div>';
+                }
+
+                // Build feel HTML if available
+                let feelHtml = '';
+                if (ex.feel) {
+                    feelHtml = '<div class="exercise-feel">💪 ' + ex.feel + '</div>';
+                }
+
                 const imageHtml = hasImage 
                     ? '<div class="exercise-diagram"><img src="' + imgUrl + '" alt="' + ex.name + '" loading="lazy"></div>'
                     : '<div class="exercise-icon">🧘</div>';
@@ -562,7 +606,8 @@
                     (hasImage ? imageHtml : '<div class="exercise-icon-container">' + imageHtml + '</div>') +
                     '<div class="sets-container' + (hasImage ? '' : ' full-width') + '">' +
                     '<div class="sets-grid">' + setsHtml + '</div>' +
-                    '<div class="exercise-cue">' + ex.cue + '</div>' +
+                    stepsHtml +
+                    feelHtml +
                     '</div>' +
                     '</div>' +
                     '</div>';
