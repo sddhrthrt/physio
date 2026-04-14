@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACL Recovery Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -993,34 +994,55 @@
         function getExerciseContext() {
             if (!programData) return 'Exercise program not loaded.';
             
-            let context = `You are an ACL and meniscus rehabilitation assistant. Here is the user's exercise program:\n\n`;
-            context += `Program: ${programData.metadata.name}\n`;
-            context += `Phases: ${programData.metadata.phases}\n\n`;
+            const dayNumber = getDayNumber();
+            const currentPhase = getCurrentPhase(dayNumber);
+            const phaseConfig = programData.metadata.phasesConfig[currentPhase];
             
-            for (let phase = 1; phase <= programData.metadata.phases; phase++) {
-                context += `--- Phase ${phase} (${programData.metadata.phasesConfig[phase].weeks}) ---\n`;
-                context += `Focus: ${programData.metadata.phaseFocus[phase]}\n\n`;
-                
-                context += `HOME EXERCISES:\n`;
-                if (programData.home[phase]) {
-                    programData.home[phase].forEach(function(ex) {
-                        context += `- ${ex.name}: ${ex.sets}\n`;
-                        context += `  Steps: ${ex.steps ? ex.steps.join(' → ') : 'N/A'}\n`;
-                        if (ex.feel) context += `  Feel: ${ex.feel}\n`;
-                    });
-                }
-                
-                context += `\nGYM EXERCISES:\n`;
-                if (programData.gym[phase]) {
-                    programData.gym[phase].forEach(function(ex) {
-                        context += `- ${ex.name} (${ex.equipment || 'various'}): ${ex.sets}\n`;
-                        context += `  ${ex.cue}\n`;
-                    });
-                }
-                context += `\n`;
+            let context = `You are an ACL and meniscus rehabilitation assistant.\n\n`;
+            
+            // Current status
+            context += `## CURRENT STATUS\n`;
+            context += `- Day: ${dayNumber}\n`;
+            context += `- Phase: ${phaseConfig.name} (Weeks ${phaseConfig.weeks})\n`;
+            context += `- Focus: ${programData.metadata.phaseFocus[currentPhase]}\n\n`;
+            
+            // Today's home exercises
+            const todayState = state[getTodayKey()] || {};
+            context += `## TODAY'S HOME EXERCISES\n`;
+            if (programData.home[currentPhase]) {
+                programData.home[currentPhase].forEach(function(ex) {
+                    const completed = todayState.home && todayState.home[ex.id] ? 
+                        todayState.home[ex.id].completedSets : [];
+                    const doneCount = completed.filter(Boolean).length;
+                    const totalSets = parseSets(ex.sets).sets;
+                    const status = doneCount >= totalSets ? '✅' : `[${doneCount}/${totalSets}]`;
+                    context += `${status} ${ex.name}: ${ex.sets}\n`;
+                    if (ex.steps) context += `   Steps: ${ex.steps.join(', ')}\n`;
+                });
             }
             
-            context += `\nCurrent equipment available: Ham curl machine, cable machine, squat rack, bikes, exercise ball, yoga mat, resistance bands.`;
+            // Today's gym exercises
+            context += `\n## TODAY'S GYM EXERCISES\n`;
+            if (programData.gym[currentPhase]) {
+                programData.gym[currentPhase].forEach(function(ex) {
+                    const completed = todayState.gym && todayState.gym[ex.id] ? 
+                        todayState.gym[ex.id].completedSets : [];
+                    const doneCount = completed.filter(Boolean).length;
+                    const totalSets = parseSets(ex.sets).sets;
+                    const status = doneCount >= totalSets ? '✅' : `[${doneCount}/${totalSets}]`;
+                    context += `${status} ${ex.name} (${ex.equipment}): ${ex.sets}\n`;
+                });
+            }
+            
+            // All phases overview
+            context += `\n## ALL PHASES OVERVIEW\n`;
+            for (let phase = 1; phase <= programData.metadata.phases; phase++) {
+                const isCurrent = phase === currentPhase;
+                const marker = isCurrent ? '>>>' : '---';
+                context += `${marker} Phase ${phase}: ${programData.metadata.phaseFocus[phase]}\n`;
+            }
+            
+            context += `\nAvailable equipment: Ham curl machine, cable machine, squat rack, bikes, exercise ball, yoga mat, resistance bands.`;
             
             return context;
         }
@@ -1063,7 +1085,6 @@
                 }
 
                 const systemContext = getExerciseContext();
-                const isMiniMax = model.includes('minimax');
 
                 // Send through our proxy server
                 const response = await fetch('/proxy', {
@@ -1075,8 +1096,7 @@
                         messages: [
                             { role: 'user', content: message }
                         ],
-                        system: systemContext,
-                        endpoint: isMiniMax ? 'messages' : 'chat'
+                        system: systemContext
                     })
                 });
 
@@ -1086,15 +1106,8 @@
                 }
 
                 const data = await response.json();
-                let botResponse;
-                
-                if (isMiniMax) {
-                    // Anthropic format response
-                    botResponse = data.content[0].text;
-                } else {
-                    // OpenAI format response
-                    botResponse = data.choices[0].message.content;
-                }
+                // All models return OpenAI format: data.choices[0].message.content
+                const botResponse = data.choices[0].message.content;
 
                 // Remove loading message
                 messagesContainer.removeChild(loadingMsg);
@@ -1103,7 +1116,7 @@
                 const botMsg = document.createElement('div');
                 botMsg.className = 'chat-message bot';
                 botMsg.innerHTML = '<div class="message-content"></div>';
-                botMsg.querySelector('.message-content').textContent = botResponse;
+                botMsg.querySelector('.message-content').innerHTML = marked.parse(botResponse);
                 messagesContainer.appendChild(botMsg);
 
             } catch (error) {
