@@ -808,7 +808,10 @@
       { "id": "goblet-squat", "name": "Goblet Squats", "sets": "3×12 reps", "cue": "Hold weight at chest. Keep chest up, knees out.", "equipment": "Rack", "img": "gobletSquat" },
       { "id": "step-ups", "name": "Step Ups", "sets": "3×12 reps", "cue": "Use low step. Drive through heel, not toes.", "equipment": "Floor", "img": "dumbbellStepUps" },
       { "id": "prone-tke", "name": "Prone Terminal Knee Ext", "sets": "3×15 reps", "cue": "Cable behind knee, lie prone. Extend fully.", "equipment": "Cable", "img": "legExtensions" },
-      { "id": "calf-raise-machine", "name": "Seated Calf Raises", "sets": "3×15 reps", "cue": "Full stretch at bottom, rise fully on toes.", "equipment": "Machine", "img": "seatedCalfRaise" }
+      { "id": "calf-raise-machine", "name": "Seated Calf Raises", "sets": "3×15 reps", "cue": "Full stretch at bottom, rise fully on toes.", "equipment": "Machine", "img": "seatedCalfRaise" },
+      { "id": "standing-calf-raise", "name": "Standing Calf Raises", "sets": "3×15 reps", "cue": "Smith machine or wall for support. Full range.", "equipment": "Rack", "img": "standingCalfRaises" },
+      { "id": "band-hip-abduction", "name": "Banded Hip Abduction", "sets": "3×15 reps", "cue": "Band around ankles. Stand on one leg, lift other out to side.", "equipment": "Band", "img": "" },
+      { "id": "monster-walks", "name": "Monster Walks", "sets": "3×20 steps", "cue": "Band around ankles or knees. Squat slightly, walk sideways.", "equipment": "Band", "img": "" }
     ],
     "3": [
       { "id": "bike", "name": "Stationary Bike", "sets": "20-30 min", "cue": "Moderate resistance. Warm up first.", "equipment": "Bikes", "img": "bicyclingStationary" },
@@ -818,7 +821,10 @@
       { "id": "rdl", "name": "Romanian Deadlifts", "sets": "3×12 reps", "cue": "Hinge at hips, keep bar close. Feel hamstrings.", "equipment": "Rack", "img": "romanianDeadlift" },
       { "id": "standing-hamcurl", "name": "Standing Hamstring Curls", "sets": "3×12 reps", "cue": "Single leg. Control the negative.", "equipment": "Ham Curl", "img": "lyingLegCurls" },
       { "id": "leg-extension", "name": "Leg Extensions", "sets": "3×15 reps", "cue": "Slow and controlled. Full squeeze at top.", "equipment": "Machine", "img": "legExtensions" },
-      { "id": "hip-sled", "name": "Hip Sled", "sets": "3×15 reps", "cue": "Focus on quad control through full range.", "equipment": "Machine", "img": "legPress" }
+      { "id": "hip-thrust", "name": "Weighted Hip Thrust", "sets": "3×12 reps", "cue": "Barbell on hips, back on bench. Drive hips up, squeeze glutes.", "equipment": "Rack", "img": "buttLiftBridge" },
+      { "id": "cable-woodchop", "name": "Cable Woodchops", "sets": "3×10 reps", "cue": "Cable high to low. Rotate through core, not arms.", "equipment": "Cable", "img": "" },
+      { "id": "band-hip-adduction", "name": "Banded Hip Adduction", "sets": "3×15 reps", "cue": "Band around knees. Stand, push knees together against resistance.", "equipment": "Band", "img": "" },
+      { "id": "dead-bugs", "name": "Dead Bugs", "sets": "3×10 reps", "cue": "Lie on back, alternate extending opposite arm and leg.", "equipment": "Floor", "img": "" }
     ],
     "4": [
       { "id": "bike", "name": "Bike or Elliptical", "sets": "25-30 min", "cue": "Higher intensity intervals if tolerated.", "equipment": "Bikes", "img": "bicyclingStationary" },
@@ -828,7 +834,10 @@
       { "id": "leg-press-heavy", "name": "Leg Press", "sets": "3×10 reps", "cue": "Progressive overload. Full range.", "equipment": "Machine", "img": "legPress" },
       { "id": "walking-lunges", "name": "Walking Lunges", "sets": "3×12 reps", "cue": "Long stride, controlled. Hold dumbbells.", "equipment": "Rack", "img": "barbellWalkingLunge" },
       { "id": "nordic-curl-neg", "name": "Nordic Curl Negatives", "sets": "3×8 reps", "cue": "Slow eccentric only. Catch with hands.", "equipment": "Floor", "img": "gluteHamRaise" },
-      { "id": "single-leg-extension", "name": "Single Leg Extensions", "sets": "3×12 reps", "cue": "Full control. No swinging.", "equipment": "Machine", "img": "singleLegLegExtension" }
+      { "id": "single-leg-extension", "name": "Single Leg Extensions", "sets": "3×12 reps", "cue": "Full control. No swinging.", "equipment": "Machine", "img": "singleLegLegExtension" },
+      { "id": "hip-thrust", "name": "Weighted Hip Thrust", "sets": "3×12 reps", "cue": "Heavier weight now. Full hip extension at top.", "equipment": "Rack", "img": "buttLiftBridge" },
+      { "id": "cable-pallof", "name": "Cable Pallof Press", "sets": "3×10 reps", "cue": "Cable from side. Press forward, resist rotation. Hold, return.", "equipment": "Cable", "img": "" },
+      { "id": "plank", "name": "Plank Hold", "sets": "3×30 sec", "cue": "Forearms on floor, body straight. Core braced.", "equipment": "Floor", "img": "" }
     ],
     "5": [
       { "id": "bike", "name": "Bike / Rowing", "sets": "30-40 min", "cue": "Include intervals. Build conditioning.", "equipment": "Bikes", "img": "bicyclingStationary" },
@@ -838,7 +847,9 @@
       { "id": "jump-squats", "name": "Jump Squats", "sets": "3×8 reps", "cue": "Explosive. Focus on landing soft.", "equipment": "Rack", "img": "gobletSquat" },
       { "id": "single-leg-rdl", "name": "Single Leg RDL", "sets": "3×8 reps", "cue": "Progressive overload. Full control.", "equipment": "Rack", "img": "romanianDeadlift" },
       { "id": "pogo", "name": "Pogo Jumps", "sets": "3×20 reps", "cue": "Quick, reactive. Stay on toes.", "equipment": "Floor", "img": "boxJumpMultipleResponse" },
-      { "id": "single-leg-hop", "name": "Single Leg Hops", "sets": "3×5 reps", "cue": "Distance progression. Quality landings.", "equipment": "Floor", "img": "singleLegHopProgression" }
+      { "id": "single-leg-hop", "name": "Single Leg Hops", "sets": "3×5 reps", "cue": "Distance progression. Quality landings.", "equipment": "Floor", "img": "singleLegHopProgression" },
+      { "id": "hip-thrust", "name": "Weighted Hip Thrust", "sets": "4×10 reps", "cue": "Heavy. Full power through glutes at top.", "equipment": "Rack", "img": "buttLiftBridge" },
+      { "id": "assisted-pullup", "name": "Assisted Pull-ups", "sets": "3×8 reps", "cue": "Machine assist or band. Pull chest to bar.", "equipment": "Machine", "img": "" }
     ]
   }
 }
